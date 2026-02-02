@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --kss-navy: #003366;
+  --kss-yellow: #FFCC00;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-gray-900 bg-white antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2 bg-[var(--kss-yellow)] text-[var(--kss-navy)] font-bold rounded-[4px] border-2 border-[var(--kss-yellow)] hover:bg-transparent hover:text-[var(--kss-yellow)] transition-all duration-300 uppercase tracking-wider text-sm;
+  }
+
+  .btn-outline {
+    @apply px-6 py-2 bg-transparent text-[var(--kss-navy)] font-bold rounded-[4px] border-2 border-[var(--kss-navy)] hover:bg-[var(--kss-navy)] hover:text-white transition-all duration-300 uppercase tracking-wider text-sm;
+  }
+
+  .nav-link {
+    @apply font-bold uppercase tracking-widest text-sm text-white hover:text-[var(--kss-yellow)] transition-colors duration-200;
+  }
+}
