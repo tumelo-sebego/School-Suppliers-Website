@@ -1,92 +1,125 @@
 <template>
-  <header class="w-full z-50">
-    <!-- Tier 1: Brand & Business Info (Blue Background) -->
-    <div class="bg-[var(--kss-blue)] text-white py-10">
-      <div class="container flex flex-col lg:flex-row justify-between items-center gap-12">
-        <!-- Logo / Wordmark -->
-        <router-link to="/" class="flex flex-col leading-none group items-center lg:items-start shrink-0">
-          <span class="font-bold text-5xl lg:text-6xl tracking-[-0.04em] font-fredoka">Katlehong</span>
-          <span class="text-[9px] uppercase tracking-[0.6em] font-semibold text-white/50 mt-2 ml-1">School Suppliers</span>
-        </router-link>
-
-        <!-- Business & Contact Info Group (Right Side on Desktop) -->
-        <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
-          <!-- Business Status & Hours -->
-          <div class="flex items-center gap-5">
-            <!-- Icon Circle -->
-            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg shadow-black/10 shrink-0">
-              <Clock size="24" class="text-[var(--kss-blue)]" />
+  <header class="header">
+    <!-- MOBILE LAYOUT -->
+    <div class="mobile-layout">
+      <!-- Mobile Tier 1: White thin strip with Status & Contact -->
+      <div class="mobile-tier-1">
+        <div class="container mobile-tier-1-content">
+          <!-- Business Status (Left) -->
+          <div class="mobile-status-group">
+            <div class="mobile-status-icon">
+              <Clock size="12" class="text-white" />
             </div>
-            <!-- Info Column -->
-            <div class="flex flex-col leading-tight">
-              <span 
-                class="text-xs font-black uppercase italic tracking-widest mb-1 font-fredoka"
-                :class="isBusinessOpen ? 'text-white' : 'text-[var(--kss-red)]'"
-              >
-                {{ isBusinessOpen ? 'Currently Open Now' : 'Business Closed Now' }}
-              </span>
-              <span class="text-[10px] uppercase tracking-widest text-white/60 font-medium">Mon - Fri: 08:00 - 17:00</span>
-              <span class="text-[10px] uppercase tracking-widest text-white/60 font-medium">Sat - Sun: By Appointment</span>
-            </div>
+            <span 
+              class="mobile-status-text"
+              :class="isBusinessOpen ? 'text-open' : 'text-closed'"
+            >
+              {{ isBusinessOpen ? 'Open Now' : 'Closed' }}
+            </span>
           </div>
+          
+          <!-- Contact Number (Right) -->
+          <a href="tel:+270119061234" class="mobile-contact-link">
+            +27 11 906 1234
+          </a>
+        </div>
+      </div>
 
-          <!-- Contact Details -->
-          <div class="flex items-center gap-5">
-           
-            <!-- Info Column -->
-            <div class="flex flex-col leading-tight">
-              <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-1">Call Center</span>
-              <span class="text-2xl lg:text-3xl font-semibold font-fredoka tracking-tight">+27 11 906 1234</span>
-            </div>
-          </div>
+      <!-- Mobile Tier 2: Blue with Logo & Menu -->
+      <div class="mobile-tier-2">
+        <div class="container mobile-tier-2-content">
+          <!-- Logo (Left) -->
+          <router-link to="/" class="mobile-logo">
+            <span class="mobile-logo-main">Katlehong</span>
+            <span class="mobile-logo-sub">School Suppliers</span>
+          </router-link>
+          
+          <!-- Hamburger Menu (Right) -->
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="mobile-menu-btn">
+            <Menu v-if="!mobileMenuOpen" size="28" />
+            <X v-else size="28" />
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Tier 2: Navigation (White Background) -->
-    <nav 
-      class="bg-white border-b border-gray-100 py-6 sticky top-0 shadow-sm transition-all duration-300"
-      :class="{ 'py-4 shadow-md': isScrolled }"
-    >
-      <div class="container flex justify-between items-center relative">
-        <!-- Left Side: Uniforms Button -->
-        <div class="hidden lg:block z-10">
-          <router-link to="/school-uniforms" class="px-8 py-3.5 bg-black text-white text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-[var(--kss-red)] transition-all duration-300 rounded-full inline-block">
-            School Uniforms
+    <!-- DESKTOP LAYOUT -->
+    <div class="desktop-layout">
+      <!-- Desktop Tier 1: Brand & Business Info (Blue Background) -->
+      <div class="desktop-tier-1">
+        <div class="container desktop-tier-1-content">
+          <!-- Logo / Wordmark -->
+          <router-link to="/" class="desktop-logo">
+            <span class="desktop-logo-main">Katlehong</span>
+            <span class="desktop-logo-sub">School Suppliers</span>
           </router-link>
-        </div>
-        
-        <!-- Center: Navigation Links -->
-        <div class="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 justify-center w-full pointer-events-none">
-          <div class="flex items-center pointer-events-auto">
-            <router-link to="/" class="px-6 py-2 nav-link">Home</router-link>
-            <router-link to="/shop" class="px-6 py-2 nav-link">Shop</router-link>
-            <router-link to="/catalogs" class="px-6 py-2 nav-link">Catalogs</router-link>
-            <router-link to="/price-list" class="px-6 py-2 nav-link">Price List</router-link>
-            <router-link to="/contact" class="px-6 py-2 nav-link">Contact</router-link>
+
+          <!-- Business & Contact Info Group (Right Side on Desktop) -->
+          <div class="desktop-info-group">
+            <!-- Business Status & Hours -->
+            <div class="desktop-status-block">
+              <!-- Icon Circle -->
+              <div class="desktop-status-icon">
+                <Clock size="24" class="text-[var(--kss-blue)]" />
+              </div>
+              <!-- Info Column -->
+              <div class="desktop-status-info">
+                <span 
+                  class="desktop-status-text"
+                  :class="isBusinessOpen ? 'text-white' : 'text-[var(--kss-red)]'"
+                >
+                  {{ isBusinessOpen ? 'Currently Open Now' : 'Business Closed Now' }}
+                </span>
+                <span class="desktop-hours-text">Mon - Fri: 08:00 - 17:00</span>
+                <span class="desktop-hours-text">Sat - Sun: By Appointment</span>
+              </div>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="desktop-contact-block">
+              <!-- Info Column -->
+              <div class="desktop-contact-info">
+                <span class="desktop-contact-label">Call Center</span>
+                <span class="desktop-contact-number">+27 11 906 1234</span>
+              </div>
+            </div>
           </div>
         </div>
-
-        <!-- Right Side: Order Button / Mobile Toggle -->
-        <div class="flex items-center gap-4 z-10">
-          <button class="hidden md:block btn-primary shadow-xl shadow-red-500/30">
-            Secure Order
-          </button>
-          
-          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-[var(--kss-blue)] p-2">
-            <Menu v-if="!mobileMenuOpen" size="32" />
-            <X v-else size="32" />
-          </button>
-        </div>
-
-        <!-- Mobile Uniforms Button (Visible only on mobile) -->
-        <div class="lg:hidden absolute left-4 top-1/2 -translate-y-1/2">
-          <router-link to="/school-uniforms" class="px-5 py-2.5 bg-black text-white text-[8px] font-bold uppercase tracking-[0.15em] rounded-full inline-block">
-            Uniforms
-          </router-link>
-        </div>
       </div>
-    </nav>
+
+      <!-- Desktop Tier 2: Navigation (White Background) -->
+      <nav 
+        class="desktop-nav"
+        :class="{ 'nav-scrolled': isScrolled }"
+      >
+        <div class="container desktop-nav-content">
+          <!-- Left Side: Uniforms Button -->
+          <div class="nav-left">
+            <router-link to="/school-uniforms" class="uniforms-btn">
+              School Uniforms
+            </router-link>
+          </div>
+          
+          <!-- Center: Navigation Links -->
+          <div class="nav-center-wrapper">
+            <div class="nav-center">
+              <router-link to="/" class="nav-link">Home</router-link>
+              <router-link to="/shop" class="nav-link">Shop</router-link>
+              <router-link to="/catalogs" class="nav-link">Catalogs</router-link>
+              <router-link to="/price-list" class="nav-link">Price List</router-link>
+              <router-link to="/contact" class="nav-link">Contact</router-link>
+            </div>
+          </div>
+
+          <!-- Right Side: Order Button -->
+          <div class="nav-right">
+            <button class="btn-primary shadow-xl shadow-red-500/30">
+              Secure Order
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
 
     <!-- Mobile Menu Overlay -->
     <transition
@@ -99,31 +132,31 @@
     >
       <div 
         v-if="mobileMenuOpen"
-        class="fixed inset-0 z-[60] bg-[var(--kss-blue)] flex flex-col p-8"
+        class="mobile-menu-overlay"
       >
-        <div class="flex justify-between items-center mb-12">
-          <div class="flex flex-col leading-none">
-            <span class="font-black text-2xl tracking-tighter uppercase italic text-white font-fredoka">KSS</span>
-            <span class="text-[8px] uppercase tracking-[0.3em] font-bold text-white/60">Suppliers</span>
+        <div class="mobile-menu-header">
+          <div class="mobile-menu-logo">
+            <span class="mobile-menu-logo-main">KSS</span>
+            <span class="mobile-menu-logo-sub">Suppliers</span>
           </div>
-          <button @click="mobileMenuOpen = false" class="text-white">
+          <button @click="mobileMenuOpen = false" class="mobile-menu-close">
             <X size="32" />
           </button>
         </div>
         
-        <div class="flex flex-col gap-6">
-          <router-link @click="mobileMenuOpen = false" to="/" class="text-4xl font-black uppercase text-white hover:text-[var(--kss-red)] italic font-fredoka">Home</router-link>
-          <router-link @click="mobileMenuOpen = false" to="/school-uniforms" class="text-4xl font-black uppercase text-white hover:text-[var(--kss-red)] italic font-fredoka">Uniforms</router-link>
-          <router-link @click="mobileMenuOpen = false" to="/shop" class="text-4xl font-black uppercase text-white hover:text-[var(--kss-red)] italic font-fredoka">Shop</router-link>
-          <router-link @click="mobileMenuOpen = false" to="/catalogs" class="text-4xl font-black uppercase text-white hover:text-[var(--kss-red)] italic font-fredoka">Catalogs</router-link>
-          <router-link @click="mobileMenuOpen = false" to="/price-list" class="text-4xl font-black uppercase text-white hover:text-[var(--kss-red)] italic font-fredoka">Price List</router-link>
-          <router-link @click="mobileMenuOpen = false" to="/contact" class="text-4xl font-black uppercase text-white hover:text-[var(--kss-red)] italic font-fredoka">Contact</router-link>
+        <div class="mobile-menu-links">
+          <router-link @click="mobileMenuOpen = false" to="/" class="mobile-menu-link">Home</router-link>
+          <router-link @click="mobileMenuOpen = false" to="/school-uniforms" class="mobile-menu-link">Uniforms</router-link>
+          <router-link @click="mobileMenuOpen = false" to="/shop" class="mobile-menu-link">Shop</router-link>
+          <router-link @click="mobileMenuOpen = false" to="/catalogs" class="mobile-menu-link">Catalogs</router-link>
+          <router-link @click="mobileMenuOpen = false" to="/price-list" class="mobile-menu-link">Price List</router-link>
+          <router-link @click="mobileMenuOpen = false" to="/contact" class="mobile-menu-link">Contact</router-link>
         </div>
         
-        <div class="mt-auto pt-8 border-t border-white/10 space-y-4">
-          <p class="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Direct Contact</p>
-          <div class="flex flex-col space-y-4">
-            <a href="tel:+270119061234" class="flex items-center gap-4 text-xl font-black text-white">
+        <div class="mobile-menu-footer">
+          <p class="mobile-menu-footer-label">Direct Contact</p>
+          <div class="mobile-menu-footer-contact">
+            <a href="tel:+270119061234" class="mobile-menu-footer-phone">
               <Phone class="text-[var(--kss-red)]" /> +27 11 906 1234
             </a>
           </div>
@@ -172,4 +205,443 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* Header Base */
+.header {
+  width: 100%;
+  z-index: 50;
+}
+
+/* Mobile Layout */
+.mobile-layout {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .mobile-layout {
+    display: none;
+  }
+}
+
+/* Mobile Tier 1 */
+.mobile-tier-1 {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.5rem 0;
+}
+
+.mobile-tier-1-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-status-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobile-status-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--kss-blue);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mobile-status-text {
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+.text-open {
+  color: var(--kss-blue);
+}
+
+.text-closed {
+  color: var(--kss-red);
+}
+
+.mobile-contact-link {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--kss-blue);
+  letter-spacing: 0.025em;
+}
+
+/* Mobile Tier 2 */
+.mobile-tier-2 {
+  background-color: var(--kss-blue);
+  color: white;
+  padding: 1rem 0;
+}
+
+.mobile-tier-2-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.mobile-logo-main {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.04em;
+}
+
+.mobile-logo-sub {
+  font-size: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.125rem;
+}
+
+.mobile-menu-btn {
+  color: white;
+  padding: 0.5rem;
+}
+
+/* Desktop Layout */
+.desktop-layout {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktop-layout {
+    display: block;
+  }
+}
+
+/* Desktop Tier 1 */
+.desktop-tier-1 {
+  background-color: var(--kss-blue);
+  color: white;
+  padding: 2.5rem 0;
+}
+
+.desktop-tier-1-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .desktop-tier-1-content {
+    flex-direction: row;
+  }
+}
+
+.desktop-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .desktop-logo {
+    align-items: flex-start;
+  }
+}
+
+.desktop-logo-main {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 1024px) {
+  .desktop-logo-main {
+    font-size: 3.75rem;
+  }
+}
+
+.desktop-logo-sub {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.6em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.5rem;
+  margin-left: 0.25rem;
+}
+
+.desktop-info-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .desktop-info-group {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktop-info-group {
+    gap: 4rem;
+  }
+}
+
+.desktop-status-block {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.desktop-status-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: white;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.desktop-status-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.desktop-status-text {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.desktop-hours-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.desktop-contact-block {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.desktop-contact-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.desktop-contact-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.25rem;
+}
+
+.desktop-contact-number {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 1024px) {
+  .desktop-contact-number {
+    font-size: 1.875rem;
+  }
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  background-color: white;
+  border-bottom: 1px solid #f3f4f6;
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+
+.nav-scrolled {
+  padding: 1rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.desktop-nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.nav-left {
+  z-index: 10;
+}
+
+.uniforms-btn {
+  padding: 0.875rem 2rem;
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  border-radius: 9999px;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.uniforms-btn:hover {
+  background-color: var(--kss-red);
+}
+
+.nav-center-wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background-color: var(--kss-blue);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.mobile-menu-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.mobile-menu-logo-main {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  font-style: italic;
+  color: white;
+}
+
+.mobile-menu-logo-sub {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mobile-menu-close {
+  color: white;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobile-menu-link {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: white;
+  font-style: italic;
+  transition: color 0.2s;
+}
+
+.mobile-menu-link:hover {
+  color: var(--kss-red);
+}
+
+.mobile-menu-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobile-menu-footer-label {
+  font-size: 10px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.mobile-menu-footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobile-menu-footer-phone {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: white;
+}
 </style>
