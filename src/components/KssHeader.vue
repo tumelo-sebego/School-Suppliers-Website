@@ -19,7 +19,12 @@
             </div>
             <!-- Info Column -->
             <div class="flex flex-col leading-tight">
-              <span class="text-xs font-black uppercase italic tracking-widest text-white mb-1 font-fredoka">Currently Open Now</span>
+              <span 
+                class="text-xs font-black uppercase italic tracking-widest mb-1 font-fredoka"
+                :class="isBusinessOpen ? 'text-white' : 'text-[var(--kss-red)]'"
+              >
+                {{ isBusinessOpen ? 'Currently Open Now' : 'Business Closed Now' }}
+              </span>
               <span class="text-[10px] uppercase tracking-widest text-white/60 font-medium">Mon - Fri: 08:00 - 17:00</span>
               <span class="text-[10px] uppercase tracking-widest text-white/60 font-medium">Sat - Sun: By Appointment</span>
             </div>
@@ -27,10 +32,7 @@
 
           <!-- Contact Details -->
           <div class="flex items-center gap-5">
-            <!-- Icon Circle -->
-            <div class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0">
-              <Phone size="24" class="text-white" />
-            </div>
+           
             <!-- Info Column -->
             <div class="flex flex-col leading-tight">
               <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-1">Call Center</span>
@@ -132,7 +134,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { 
   Phone, Clock, Menu, X 
 } from 'lucide-vue-next'
@@ -143,6 +145,22 @@ const mobileMenuOpen = ref(false)
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 100
 }
+
+// Business status logic
+const isBusinessOpen = computed(() => {
+  const now = new Date()
+  // Current time adjusted to South African Time (GMT+2)
+  const day = now.getDay() // 0 = Sunday, 1 = Monday, ...
+  const hour = now.getHours()
+  
+  // Mon - Fri: 08:00 - 17:00
+  if (day >= 1 && day <= 5) {
+    return hour >= 8 && hour < 17
+  }
+  
+  // Saturday & Sunday: By Appointment Only (effectively closed for auto-indicator)
+  return false
+})
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
