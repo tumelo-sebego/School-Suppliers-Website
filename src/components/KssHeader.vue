@@ -1,68 +1,71 @@
 <template>
   <header class="w-full z-50">
     <!-- Tier 1: Brand & Contact Info (Blue Background) -->
-    <div class="bg-[var(--kss-blue)] text-white py-6">
-      <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="bg-[var(--kss-blue)] text-white py-12">
+      <div class="kss-container flex flex-col md:flex-row justify-between items-center gap-10">
         <!-- Logo / Wordmark -->
-        <router-link to="/" class="flex flex-col leading-none group">
-          <span class="font-black text-4xl lg:text-5xl tracking-tighter uppercase italic font-outfit">Katlehong</span>
-          <span class="text-xs uppercase tracking-[0.4em] font-bold text-white/80 mt-1 ml-1">School Suppliers</span>
+        <router-link to="/" class="flex flex-col leading-none group items-center md:items-start">
+          <span class="font-bold text-5xl lg:text-7xl tracking-[-0.04em] font-fredoka">Katlehong</span>
+          <span class="text-[10px] uppercase tracking-[0.6em] font-semibold text-white/60 mt-2 ml-1">School Suppliers</span>
         </router-link>
 
         <!-- Placeholder SVG (Center) -->
-        <div class="hidden lg:flex items-center justify-center opacity-90">
-          <svg viewBox="0 0 100 100" class="w-16 h-16 fill-current text-white/20">
-            <path d="M50 10 L90 35 V75 L50 90 L10 75 V35 Z M50 25 L30 40 V65 L50 75 L70 65 V40 Z" />
-          </svg>
+        <div class="hidden lg:flex items-center justify-center">
+          <div class="p-5 bg-white/5 rounded-full border border-white/10">
+            <svg viewBox="0 0 100 100" class="w-20 h-20 fill-current text-white/40">
+              <path d="M50 15 L85 35 V75 L50 95 L15 75 V35 Z M50 30 L35 40 V65 L50 75 L65 65 V40 Z" />
+              <circle cx="50" cy="50" r="10" />
+            </svg>
+          </div>
         </div>
 
         <!-- Contact Detail (Right) -->
-        <div class="flex flex-col items-end gap-1">
-          <div class="flex items-center gap-2 text-white/70">
-            <Phone size="16" />
-            <span class="text-xs font-bold uppercase tracking-widest">Call Center</span>
+        <div class="flex flex-col items-center md:items-end gap-1">
+          <div class="flex items-center gap-2 text-white/50 mb-1">
+            <Phone size="14" />
+            <span class="text-[9px] font-bold uppercase tracking-[0.3em]">Customer Support</span>
           </div>
-          <span class="text-xl lg:text-3xl font-black font-outfit tracking-tight">+27 11 906 1234</span>
+          <span class="text-2xl lg:text-4xl font-semibold font-fredoka tracking-tight">+27 11 906 1234</span>
         </div>
       </div>
     </div>
 
     <!-- Tier 2: Navigation (White Background) -->
     <nav 
-      class="bg-white border-b border-gray-100 py-4 sticky top-0 shadow-sm transition-all duration-300"
-      :class="{ 'py-2 shadow-md': isScrolled }"
+      class="bg-white border-b border-gray-100 py-6 sticky top-0 shadow-sm transition-all duration-300"
+      :class="{ 'py-4 shadow-md': isScrolled }"
     >
-      <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="kss-container flex justify-between items-center">
         <!-- Main Navigation Links -->
-        <div class="hidden lg:flex items-center gap-1">
-          <router-link to="/school-uniforms" class="px-6 py-2.5 bg-black text-white text-[11px] font-black uppercase tracking-[0.15em] hover:bg-[var(--kss-red)] transition-colors duration-300 mr-4">
+        <div class="hidden lg:flex items-center gap-2">
+          <router-link to="/school-uniforms" class="px-8 py-3.5 bg-black text-white text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-[var(--kss-red)] transition-all duration-300 mr-6 rounded-sm">
             School Uniforms
           </router-link>
           
           <div class="flex items-center">
-            <router-link to="/" class="px-5 py-2 nav-link hover:text-[var(--kss-red)]">Home</router-link>
-            <router-link to="/shop" class="px-5 py-2 nav-link hover:text-[var(--kss-red)]">Shop</router-link>
-            <router-link to="/catalogs" class="px-5 py-2 nav-link hover:text-[var(--kss-red)]">Catalogs</router-link>
-            <router-link to="/price-list" class="px-5 py-2 nav-link hover:text-[var(--kss-red)]">Price List</router-link>
-            <router-link to="/contact" class="px-5 py-2 nav-link hover:text-[var(--kss-red)]">Contact</router-link>
+            <router-link to="/" class="px-6 py-2 nav-link">Home</router-link>
+            <router-link to="/shop" class="px-6 py-2 nav-link">Shop</router-link>
+            <router-link to="/catalogs" class="px-6 py-2 nav-link">Catalogs</router-link>
+            <router-link to="/price-list" class="px-6 py-2 nav-link">Price List</router-link>
+            <router-link to="/contact" class="px-6 py-2 nav-link">Contact</router-link>
           </div>
         </div>
 
         <!-- Right Side CTA -->
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-8">
           <div class="hidden md:flex flex-col items-end leading-none">
-            <span class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">We are</span>
-            <span class="text-sm font-black text-[var(--kss-blue)] uppercase italic">Now Open</span>
+            <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-gray-400 mb-1.5 ml-1">Business Hours:</span>
+            <span class="text-xs font-black text-[var(--kss-blue)] uppercase italic tracking-widest font-fredoka">Open Now</span>
           </div>
           
-          <button class="btn-primary py-3 px-8 shadow-lg shadow-red-500/20">
-            Order Now
+          <button class="btn-primary shadow-xl shadow-red-500/30">
+            Secure Order
           </button>
           
           <!-- Mobile Menu Toggle -->
-          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-[var(--kss-blue)]">
-            <Menu v-if="!mobileMenuOpen" size="28" />
-            <X v-else size="28" />
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-[var(--kss-blue)] p-2">
+            <Menu v-if="!mobileMenuOpen" size="32" />
+            <X v-else size="32" />
           </button>
         </div>
       </div>

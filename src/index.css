@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;600;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;600;800;900&family=Fredoka:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -22,14 +22,23 @@
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-2 bg-[var(--kss-red)] text-white font-bold rounded-full border-2 border-[var(--kss-red)] hover:bg-transparent hover:text-[var(--kss-red)] transition-all duration-300 uppercase tracking-widest text-xs;
+    @apply px-8 py-3 bg-[var(--kss-red)] text-white font-bold rounded-full border-2 border-[var(--kss-red)] hover:bg-transparent hover:text-[var(--kss-red)] transition-all duration-300 uppercase tracking-widest text-xs;
   }
 
   .btn-outline {
-    @apply px-6 py-2 bg-transparent text-[var(--kss-blue)] font-bold rounded-full border-2 border-[var(--kss-blue)] hover:bg-[var(--kss-blue)] hover:text-white transition-all duration-300 uppercase tracking-widest text-xs;
+    @apply px-8 py-3 bg-transparent text-[var(--kss-blue)] font-bold rounded-full border-2 border-[var(--kss-blue)] hover:bg-[var(--kss-blue)] hover:text-white transition-all duration-300 uppercase tracking-widest text-xs;
   }
 
   .nav-link {
-    @apply font-bold uppercase tracking-widest text-[11px] text-[var(--kss-blue)] hover:text-[var(--kss-red)] transition-colors duration-200;
+    @apply font-bold uppercase tracking-[0.2em] text-[10px] text-[var(--kss-blue)] hover:text-[var(--kss-red)] transition-colors duration-200;
   }
+
+  /* Custom container for spacious design matching image */
+  .kss-container {
+    @apply max-w-[1440px] mx-auto px-10 lg:px-20;
+  }
+}
+
+.font-fredoka {
+  font-family: 'Fredoka', sans-serif;
 }
