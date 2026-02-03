@@ -35,7 +35,7 @@
   }
 
   .nav-link {
-    @apply font-bold uppercase tracking-[0.2em] text-xs text-[var(--kss-blue)] hover:text-[var(--kss-red)] transition-colors duration-200 px-6 py-2;
+    @apply font-bold uppercase tracking-[0.2em] text-xs text-[var(--kss-blue)] hover:text-[var(--kss-red)] transition-colors duration-200 px-4 py-2;
   }
 }
 
