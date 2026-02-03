@@ -11,12 +11,12 @@
 
       <div class="container mx-auto relative z-10">
         <div class="max-w-4xl space-y-8">
-          <div class="inline-block px-4 py-1 bg-[var(--kss-red)] text-white text-xs font-black uppercase tracking-[0.3em] rounded-full">
+          <div class="hero-badge inline-block px-4 py-1 text-white text-xs font-black uppercase tracking-[0.3em] rounded-full">
             Trusted since 1998
           </div>
           <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter leading-[0.9] font-fredoka">
             Industrial Grade <br />
-            <span class="text-[var(--kss-red)]">School Supplies</span>
+            <span class="hero-title-accent">School Supplies</span>
           </h1>
           <p class="text-xl md:text-2xl text-gray-400 font-bold uppercase tracking-wider max-w-2xl leading-relaxed">
             Leading suppliers of authoritative school uniforms and educational equipment in the Katlehong region.
@@ -48,12 +48,12 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div class="space-y-4">
-            <h2 class="text-5xl font-black uppercase italic tracking-tighter text-[var(--kss-blue)] font-fredoka">
-              Partner <span class="text-[var(--kss-red)] italic">Schools</span>
+            <h2 class="section-title-primary text-5xl font-black uppercase italic tracking-tighter font-fredoka">
+              Partner <span class="section-title-accent italic">Schools</span>
             </h2>
             <p class="text-lg text-gray-500 font-bold uppercase tracking-wider">Select your institution to view specific uniform requirements.</p>
           </div>
-          <router-link to="/price-list" class="text-[var(--kss-blue)] font-black uppercase tracking-widest text-sm hover:text-[var(--kss-red)] transition-colors underline decoration-2 underline-offset-8">
+          <router-link to="/price-list" class="link-primary font-black uppercase tracking-widest text-sm underline decoration-2 underline-offset-8">
             View Generic Price List
           </router-link>
         </div>
@@ -63,12 +63,12 @@
             v-for="school in catalogStore.schools" 
             :key="school.id"
             :to="'/schools/' + school.slug"
-            class="group bg-gray-50 p-8 border-l-8 border-transparent hover:border-kss-yellow hover:bg-white hover:shadow-2xl transition-all duration-300 rounded-sm"
+            class="school-card group bg-gray-50 p-8 hover:bg-white hover:shadow-2xl duration-300 rounded-sm"
           >
             <div class="w-16 h-16 bg-white flex items-center justify-center mb-12 shadow-sm rounded-sm group-hover:scale-110 transition-transform">
               <SchoolIcon class="text-kss-navy" size="32" />
             </div>
-            <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--kss-blue)] mb-4 group-hover:text-[var(--kss-red)] transition-colors font-fredoka">
+            <h3 class="school-card-title text-2xl font-black uppercase tracking-tight mb-4 font-fredoka">
               {{ school.name }}
             </h3>
             <p class="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2 group-hover:translate-x-2 transition-transform">
@@ -85,9 +85,9 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           <div class="space-y-12">
             <div class="space-y-6">
-              <h2 class="text-5xl font-black uppercase italic tracking-tighter text-[var(--kss-blue)] leading-none font-fredoka">
+              <h2 class="section-title-primary text-5xl font-black uppercase italic tracking-tighter leading-none font-fredoka">
                 Direct Lead <br />
-                <span class="text-[var(--kss-red)] italic font-fredoka">Generation</span>
+                <span class="section-title-accent italic font-fredoka">Generation</span>
               </h2>
               <p class="text-xl text-gray-500 font-bold uppercase tracking-wider leading-relaxed">
                 Our inquiry system is built for speed. Get a quote for your school supplies within 24 hours.
@@ -96,11 +96,11 @@
 
             <div class="space-y-8">
               <div v-for="feature in features" :key="feature.title" class="flex gap-6">
-                <div class="w-12 h-12 shrink-0 bg-[var(--kss-blue)] text-white flex items-center justify-center rounded-full">
+                <div class="feature-icon-bg w-12 h-12 shrink-0 text-white flex items-center justify-center rounded-full">
                   <component :is="feature.icon" size="24" />
                 </div>
                 <div class="space-y-1">
-                  <h4 class="text-lg font-black uppercase tracking-tight text-[var(--kss-blue)] font-fredoka">{{ feature.title }}</h4>
+                  <h4 class="feature-title text-lg font-black uppercase tracking-tight font-fredoka">{{ feature.title }}</h4>
                   <p class="text-sm text-gray-400 font-bold uppercase tracking-wide leading-relaxed italic">{{ feature.desc }}</p>
                 </div>
               </div>
@@ -153,3 +153,62 @@ const scrollToCatalog = () => {
   document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
+
+<style scoped>
+/* Hero Section Styles */
+.hero-badge {
+  background-color: var(--kss-red);
+}
+
+.hero-title-accent {
+  color: var(--kss-red);
+}
+
+/* Section Heading Styles */
+.section-title-primary {
+  color: var(--kss-blue);
+}
+
+.section-title-accent {
+  color: var(--kss-red);
+}
+
+/* School Card Styles */
+.school-card {
+  border-left-width: 8px;
+  border-color: transparent;
+  transition: all 0.3s;
+}
+
+.school-card:hover {
+  border-color: var(--kss-yellow);
+}
+
+.school-card-title {
+  color: var(--kss-blue);
+  transition: color 0.3s;
+}
+
+.school-card:hover .school-card-title {
+  color: var(--kss-red);
+}
+
+/* Feature Icon Styles */
+.feature-icon-bg {
+  background-color: var(--kss-blue);
+}
+
+.feature-title {
+  color: var(--kss-blue);
+}
+
+/* Link Styles */
+.link-primary {
+  color: var(--kss-blue);
+  transition: color 0.3s;
+}
+
+.link-primary:hover {
+  color: var(--kss-red);
+}
+</style>

@@ -3,7 +3,7 @@
     <!-- MOBILE LAYOUT -->
     <div class="mobile-layout">
       <!-- Mobile Tier 1: White thin strip with Status & Contact -->
-      <div class="mobile-tier-1">
+      <div class="mobile-tier-1" :class="{ 'tier-hidden': scrollingDown && scrollY > 100 }">
         <div class="container mobile-tier-1-content">
           <!-- Business Status (Left) -->
           <div class="mobile-status-group">
@@ -26,7 +26,7 @@
       </div>
 
       <!-- Mobile Tier 2: Blue with Logo & Menu -->
-      <div class="mobile-tier-2">
+      <div class="mobile-tier-2" :class="{ 'tier-2-sticky': scrollY > 50, 'tier-2-visible': scrollingUp && scrollY > 100 }" :style="{ transform: scrollingDown && scrollY > 100 ? 'translateY(-100%)' : 'translateY(0)' }">
         <div class="container mobile-tier-2-content">
           <!-- Logo (Left) -->
           <router-link to="/" class="mobile-logo">
@@ -46,7 +46,7 @@
     <!-- DESKTOP LAYOUT -->
     <div class="desktop-layout">
       <!-- Desktop Tier 1: Brand & Business Info (Blue Background) -->
-      <div class="desktop-tier-1">
+      <div class="desktop-tier-1" :class="{ 'tier-hidden': scrollingDown && scrollY > 100 }">
         <div class="container desktop-tier-1-content">
           <!-- Logo / Wordmark -->
           <router-link to="/" class="desktop-logo">
@@ -90,7 +90,8 @@
       <!-- Desktop Tier 2: Navigation (White Background) -->
       <nav 
         class="desktop-nav"
-        :class="{ 'nav-scrolled': isScrolled }"
+        :class="{ 'nav-scrolled': isScrolled, 'tier-2-sticky': scrollY > 50, 'tier-2-visible': scrollingUp && scrollY > 100 }"
+        :style="{ transform: scrollingDown && scrollY > 100 ? 'translateY(-100%)' : 'translateY(0)' }"
       >
         <div class="container desktop-nav-content">
           <!-- Left Side: Uniforms Button -->
@@ -174,9 +175,26 @@ import {
 
 const isScrolled = ref(false)
 const mobileMenuOpen = ref(false)
+const scrollY = ref(0)
+const lastScrollY = ref(0)
+const scrollingUp = ref(false)
+const scrollingDown = ref(false)
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 100
+  const currentScrollY = window.scrollY
+  
+  // Determine scroll direction
+  if (currentScrollY > lastScrollY.value && currentScrollY > 50) {
+    scrollingDown.value = true // Scrolling down (hiding content above)
+    scrollingUp.value = false
+  } else if (currentScrollY < lastScrollY.value) {
+    scrollingDown.value = false
+    scrollingUp.value = true // Scrolling up (revealing content above)
+  }
+  
+  scrollY.value = currentScrollY
+  lastScrollY.value = currentScrollY
+  isScrolled.value = currentScrollY > 100
 }
 
 // Business status logic
@@ -211,6 +229,24 @@ onUnmounted(() => {
   z-index: 50;
 }
 
+/* Shared Scroll Behavior Classes */
+.tier-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tier-2-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.tier-2-visible {
+  transform: translateY(0) !important;
+}
+
 /* Mobile Layout */
 .mobile-layout {
   display: block;
@@ -227,6 +263,13 @@ onUnmounted(() => {
   background-color: white;
   border-bottom: 1px solid #e5e7eb;
   padding: 0.5rem 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-tier-1-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .mobile-tier-1-content {
@@ -280,6 +323,7 @@ onUnmounted(() => {
   background-color: var(--kss-blue);
   color: white;
   padding: 1rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .mobile-tier-2-content {
@@ -331,6 +375,7 @@ onUnmounted(() => {
   background-color: var(--kss-blue);
   color: white;
   padding: 2.5rem 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .desktop-tier-1-content {
