@@ -1,33 +1,52 @@
 <template>
   <div class="bg-white">
     <!-- Hero Section -->
-    <section class="relative min-h-[80vh] flex items-center bg-kss-navy text-white overflow-hidden">
-      <!-- Background pattern -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="grid grid-cols-12 h-full">
-          <div v-for="i in 48" :key="i" class="border-r border-b border-white h-32"></div>
+    <section class="hero-section">
+      <div class="hero-container">
+        <!-- Left Student Image -->
+        <div class="hero-student hero-student-left">
+          <img 
+            src="C:/Users/tumelo/.gemini/antigravity/brain/2171fb65-8f4f-4391-9007-4ba0b30a7c99/hero_student_left_1770110894178.png" 
+            alt="Happy student with school supplies"
+            class="hero-student-img"
+          />
         </div>
-      </div>
 
-      <div class="container mx-auto relative z-10">
-        <div class="max-w-4xl space-y-8">
-          <div class="hero-badge inline-block px-4 py-1 text-white text-xs font-black uppercase tracking-[0.3em] rounded-full">
-            Trusted since 1998
-          </div>
-          <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter leading-[0.9] font-fredoka">
-            Industrial Grade <br />
-            <span class="hero-title-accent">School Supplies</span>
+        <!-- Center Content -->
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Quality for Every<br />
+            Little Scholar!
           </h1>
-          <p class="text-xl md:text-2xl text-gray-400 font-bold uppercase tracking-wider max-w-2xl leading-relaxed">
-            Leading suppliers of authoritative school uniforms and educational equipment in the Katlehong region.
+          <p class="hero-subtitle">
+            Trusted school uniforms and supplies for Katlehong families since 1998
           </p>
-          <div class="flex flex-wrap gap-6 pt-4">
-            <button @click="scrollToCatalog" class="btn-primary py-4 px-10 text-lg">Browse Schools</button>
-            <router-link to="/price-list" class="btn-outline py-4 px-10 text-lg flex items-center gap-2">
-              <ClipboardList size="24" /> View Pricing
+          <div class="hero-buttons">
+            <button @click="scrollToCatalog" class="hero-btn hero-btn-primary">
+              Browse Schools
+            </button>
+            <router-link to="/price-list" class="hero-btn hero-btn-secondary">
+              View Pricing
             </router-link>
           </div>
         </div>
+
+        <!-- Right Student Image -->
+        <div class="hero-student hero-student-right">
+          <img 
+            src="C:/Users/tumelo/.gemini/antigravity/brain/2171fb65-8f4f-4391-9007-4ba0b30a7c99/hero_student_right_1770110913700.png" 
+            alt="Happy student with school supplies"
+            class="hero-student-img"
+          />
+        </div>
+      </div>
+
+      <!-- Decorative floating elements -->
+      <div class="hero-decorations">
+        <div class="hero-decoration hero-decoration-1"></div>
+        <div class="hero-decoration hero-decoration-2"></div>
+        <div class="hero-decoration hero-decoration-3"></div>
+        <div class="hero-decoration hero-decoration-4"></div>
       </div>
     </section>
 
@@ -116,7 +135,7 @@
 
 <script setup>
 import { 
-  ClipboardList, ArrowRight, School as SchoolIcon, 
+  ArrowRight, School as SchoolIcon, 
   ShieldCheck, Truck, Clock, Headphones 
 } from 'lucide-vue-next'
 import { useCatalogStore } from '../store/catalog'
@@ -156,12 +175,244 @@ const scrollToCatalog = () => {
 
 <style scoped>
 /* Hero Section Styles */
-.hero-badge {
-  background-color: var(--kss-red);
+.hero-section {
+  position: relative;
+  min-height: 85vh;
+  background: linear-gradient(135deg, #4fc3f7 0%, #81d4fa 50%, #b3e5fc 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 4rem 1rem;
 }
 
-.hero-title-accent {
-  color: var(--kss-red);
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-container {
+    gap: 4rem;
+  }
+}
+
+/* Student Images */
+.hero-student {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hero-student {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+}
+
+.hero-student-img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+}
+
+@media (min-width: 1024px) {
+  .hero-student-img {
+    max-width: 350px;
+  }
+}
+
+/* Hero Content */
+.hero-content {
+  text-align: center;
+  z-index: 20;
+  padding: 2rem 0;
+}
+
+/* Hero Title */
+.hero-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 5rem;
+  }
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Hero Buttons */
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .hero-buttons {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+.hero-btn {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 1024px) {
+  .hero-btn {
+    font-size: 1.1rem;
+    padding: 1.2rem 3rem;
+  }
+}
+
+.hero-btn-primary {
+  background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+  color: white;
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+}
+
+.hero-btn-secondary {
+  background: linear-gradient(135deg, #ec407a 0%, #d81b60 100%);
+  color: white;
+}
+
+.hero-btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(236, 64, 122, 0.4);
+}
+
+/* Decorative Elements */
+.hero-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.hero-decoration {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-decoration-1 {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.hero-decoration-2 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff4081 0%, #f50057 100%);
+  top: 25%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.hero-decoration-3 {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+.hero-decoration-4 {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #ff4081 0%, #f50057 100%);
+  bottom: 30%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
 }
 
 /* Section Heading Styles */
