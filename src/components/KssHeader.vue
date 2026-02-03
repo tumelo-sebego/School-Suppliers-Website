@@ -2,7 +2,7 @@
   <header class="w-full z-50">
     <!-- Tier 1: Brand & Contact Info (Blue Background) -->
     <div class="bg-[var(--kss-blue)] text-white py-12">
-      <div class="kss-container flex flex-col md:flex-row justify-between items-center gap-10">
+      <div class="container flex flex-col md:flex-row justify-between items-center gap-10">
         <!-- Logo / Wordmark -->
         <router-link to="/" class="flex flex-col leading-none group items-center md:items-start">
           <span class="font-bold text-5xl lg:text-7xl tracking-[-0.04em] font-fredoka">Katlehong</span>
@@ -19,13 +19,20 @@
           </div>
         </div>
 
-        <!-- Contact Detail (Right) -->
+        <!-- Contact Detail & Hours (Right) -->
         <div class="flex flex-col items-center md:items-end gap-1">
-          <div class="flex items-center gap-2 text-white/50 mb-1">
-            <Phone size="14" />
-            <span class="text-[9px] font-bold uppercase tracking-[0.3em]">Customer Support</span>
+          <div class="flex flex-col items-center md:items-end mb-4 leading-none decoration-white/20 border-b border-white/10 pb-4 w-full md:w-auto">
+            <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-white/40 mb-1.5">Business Hours:</span>
+            <span class="text-xs font-black text-white/90 uppercase italic tracking-widest font-fredoka">Currently Open Now</span>
           </div>
-          <span class="text-2xl lg:text-4xl font-semibold font-fredoka tracking-tight">+27 11 906 1234</span>
+
+          <div class="flex flex-col items-center md:items-end gap-1">
+            <div class="flex items-center gap-2 text-white/50 mb-1">
+              <Phone size="14" />
+              <span class="text-[9px] font-bold uppercase tracking-[0.3em]">Customer Support</span>
+            </div>
+            <span class="text-2xl lg:text-4xl font-semibold font-fredoka tracking-tight">+27 11 906 1234</span>
+          </div>
         </div>
       </div>
     </div>
@@ -35,35 +42,36 @@
       class="bg-white border-b border-gray-100 py-6 sticky top-0 shadow-sm transition-all duration-300"
       :class="{ 'py-4 shadow-md': isScrolled }"
     >
-      <div class="kss-container flex justify-between items-center">
-        <!-- Main Navigation Links -->
-        <div class="hidden lg:flex items-center gap-2">
-          <router-link to="/school-uniforms" class="px-8 py-3.5 bg-black text-white text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-[var(--kss-red)] transition-all duration-300 mr-6 rounded-sm">
+      <div class="container flex justify-between items-center">
+        <!-- Main Navigation Links (Left Button + Centered Links) -->
+        <div class="hidden lg:flex items-center justify-between w-full">
+          <!-- First Button -->
+          <router-link to="/school-uniforms" class="px-8 py-3.5 bg-black text-white text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-[var(--kss-red)] transition-all duration-300 rounded-full">
             School Uniforms
           </router-link>
           
-          <div class="flex items-center">
+          <!-- Centered Links -->
+          <div class="flex items-center absolute left-1/2 -translate-x-1/2">
             <router-link to="/" class="px-6 py-2 nav-link">Home</router-link>
             <router-link to="/shop" class="px-6 py-2 nav-link">Shop</router-link>
             <router-link to="/catalogs" class="px-6 py-2 nav-link">Catalogs</router-link>
             <router-link to="/price-list" class="px-6 py-2 nav-link">Price List</router-link>
             <router-link to="/contact" class="px-6 py-2 nav-link">Contact</router-link>
           </div>
-        </div>
 
-        <!-- Right Side CTA -->
-        <div class="flex items-center gap-8">
-          <div class="hidden md:flex flex-col items-end leading-none">
-            <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-gray-400 mb-1.5 ml-1">Business Hours:</span>
-            <span class="text-xs font-black text-[var(--kss-blue)] uppercase italic tracking-widest font-fredoka">Open Now</span>
-          </div>
-          
+          <!-- Right Side CTA -->
           <button class="btn-primary shadow-xl shadow-red-500/30">
             Secure Order
           </button>
+        </div>
+        
+        <!-- Mobile Layout -->
+        <div class="lg:hidden flex justify-between items-center w-full">
+          <router-link to="/school-uniforms" class="px-6 py-2.5 bg-black text-white text-[9px] font-bold uppercase tracking-[0.2em] rounded-full">
+            Uniforms
+          </router-link>
           
-          <!-- Mobile Menu Toggle -->
-          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-[var(--kss-blue)] p-2">
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-[var(--kss-blue)] p-2">
             <Menu v-if="!mobileMenuOpen" size="32" />
             <X v-else size="32" />
           </button>

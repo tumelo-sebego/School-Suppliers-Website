@@ -21,6 +21,11 @@
 }
 
 @layer components {
+  /* Redefining global container for spacious design matching reference image */
+  .container {
+    @apply max-w-[1440px] mx-auto px-10 lg:px-20 !important;
+  }
+
   .btn-primary {
     @apply px-8 py-3 bg-[var(--kss-red)] text-white font-bold rounded-full border-2 border-[var(--kss-red)] hover:bg-transparent hover:text-[var(--kss-red)] transition-all duration-300 uppercase tracking-widest text-xs;
   }
@@ -31,11 +36,6 @@
 
   .nav-link {
     @apply font-bold uppercase tracking-[0.2em] text-[10px] text-[var(--kss-blue)] hover:text-[var(--kss-red)] transition-colors duration-200;
-  }
-
-  /* Custom container for spacious design matching image */
-  .kss-container {
-    @apply max-w-[1440px] mx-auto px-10 lg:px-20;
   }
 }
 
