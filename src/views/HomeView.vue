@@ -325,7 +325,6 @@ const scrollToCatalog = () => {
   text-decoration: none;
   display: inline-block;
   border: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 1024px) {
@@ -336,23 +335,21 @@ const scrollToCatalog = () => {
 }
 
 .hero-btn-primary {
-  background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+  background: var(--kss-blue);
   color: white;
 }
 
 .hero-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
 }
 
 .hero-btn-secondary {
-  background: linear-gradient(135deg, #ec407a 0%, #d81b60 100%);
+  background: var(--kss-red);
   color: white;
 }
 
 .hero-btn-secondary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(236, 64, 122, 0.4);
 }
 
 /* Decorative Elements */
