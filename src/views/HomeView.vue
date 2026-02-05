@@ -6,7 +6,7 @@
         <!-- Left Student Image -->
         <div class="hero-student hero-student-left">
           <img 
-            src="C:/Users/tumelo/.gemini/antigravity/brain/2171fb65-8f4f-4391-9007-4ba0b30a7c99/hero_student_left_1770110894178.png" 
+            src="/images/hero-student-left.png" 
             alt="Happy student with school supplies"
             class="hero-student-img"
           />
@@ -34,7 +34,7 @@
         <!-- Right Student Image -->
         <div class="hero-student hero-student-right">
           <img 
-            src="C:/Users/tumelo/.gemini/antigravity/brain/2171fb65-8f4f-4391-9007-4ba0b30a7c99/hero_student_right_1770110913700.png" 
+            src="/images/hero-student-right.png" 
             alt="Happy student with school supplies"
             class="hero-student-img"
           />
