@@ -6,7 +6,7 @@
         <!-- Left Student Image -->
         <div class="hero-student hero-student-left">
           <img 
-            src="/images/hero-student-left.png" 
+            src="https://placehold.co/400x600/4fc3f7/white?text=Student+Left" 
             alt="Happy student with school supplies"
             class="hero-student-img"
           />
@@ -34,7 +34,7 @@
         <!-- Right Student Image -->
         <div class="hero-student hero-student-right">
           <img 
-            src="/images/hero-student-right.png" 
+            src="https://placehold.co/400x600/81d4fa/white?text=Student+Right" 
             alt="Happy student with school supplies"
             class="hero-student-img"
           />
