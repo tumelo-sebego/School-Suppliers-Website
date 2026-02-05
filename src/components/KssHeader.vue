@@ -3,7 +3,7 @@
     <!-- MOBILE LAYOUT -->
     <div class="mobile-layout">
       <!-- Mobile Tier 1: White thin strip with Status & Contact -->
-      <div class="mobile-tier-1" :class="{ 'tier-hidden': scrollingDown && scrollY > 100 }">
+      <div class="mobile-tier-1" :class="{ 'tier-hidden': scrollY > 50 }">
         <div class="container mobile-tier-1-content">
           <!-- Business Status (Left) -->
           <div class="mobile-status-group">
@@ -26,7 +26,7 @@
       </div>
 
       <!-- Mobile Tier 2: Blue with Logo & Menu -->
-      <div class="mobile-tier-2" :class="{ 'tier-2-sticky': scrollY > 50, 'tier-2-visible': scrollingUp && scrollY > 100 }" :style="{ transform: scrollingDown && scrollY > 100 ? 'translateY(-100%)' : 'translateY(0)' }">
+      <div class="mobile-tier-2" :class="{ 'tier-2-sticky': scrollY > 50 }" :style="{ transform: (scrollingDown && scrollY > 100) ? 'translateY(-100%)' : 'translateY(0)' }">
         <div class="container mobile-tier-2-content">
           <!-- Logo (Left) -->
           <router-link to="/" class="mobile-logo">
@@ -46,7 +46,7 @@
     <!-- DESKTOP LAYOUT -->
     <div class="desktop-layout">
       <!-- Desktop Tier 1: Brand & Business Info (Blue Background) -->
-      <div class="desktop-tier-1" :class="{ 'tier-hidden': scrollingDown && scrollY > 100 }">
+      <div class="desktop-tier-1" :class="{ 'tier-hidden': scrollY > 50 }">
         <div class="container desktop-tier-1-content">
           <!-- Logo / Wordmark -->
           <router-link to="/" class="desktop-logo">
@@ -90,8 +90,8 @@
       <!-- Desktop Tier 2: Navigation (White Background) -->
       <nav 
         class="desktop-nav"
-        :class="{ 'nav-scrolled': isScrolled, 'tier-2-sticky': scrollY > 50, 'tier-2-visible': scrollingUp && scrollY > 100 }"
-        :style="{ transform: scrollingDown && scrollY > 100 ? 'translateY(-100%)' : 'translateY(0)' }"
+        :class="{ 'nav-scrolled': isScrolled, 'tier-2-sticky': scrollY > 50 }"
+        :style="{ transform: (scrollingDown && scrollY > 100) ? 'translateY(-100%)' : 'translateY(0)' }"
       >
         <div class="container desktop-nav-content">
           <!-- Left Side: Uniforms Button -->
