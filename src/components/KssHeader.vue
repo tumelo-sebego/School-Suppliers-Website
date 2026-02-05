@@ -182,15 +182,17 @@ const scrollingDown = ref(false)
 
 const handleScroll = () => {
   const currentScrollY = window.scrollY
+  const threshold = 5 // Minimum scroll difference to trigger direction change
   
-  // Determine scroll direction
-  if (currentScrollY > lastScrollY.value && currentScrollY > 50) {
-    scrollingDown.value = true // Scrolling down (hiding content above)
+  // Determine scroll direction with threshold to prevent micro-jitters
+  if (currentScrollY > lastScrollY.value + threshold && currentScrollY > 50) {
+    scrollingDown.value = true
     scrollingUp.value = false
-  } else if (currentScrollY < lastScrollY.value) {
+  } else if (currentScrollY < lastScrollY.value - threshold) {
     scrollingDown.value = false
-    scrollingUp.value = true // Scrolling up (revealing content above)
+    scrollingUp.value = true
   }
+  // If difference is less than threshold, keep previous direction state
   
   scrollY.value = currentScrollY
   lastScrollY.value = currentScrollY
@@ -264,6 +266,9 @@ onUnmounted(() => {
   border-bottom: 1px solid #e5e7eb;
   padding: 0.5rem 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform, opacity;
+  position: relative;
+  z-index: 45;
 }
 
 .mobile-tier-1-hidden {
@@ -323,7 +328,10 @@ onUnmounted(() => {
   background-color: var(--kss-blue);
   color: white;
   padding: 1rem 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  will-change: transform;
+  position: sticky;
+  top: 0;
 }
 
 .mobile-tier-2-content {
@@ -376,6 +384,9 @@ onUnmounted(() => {
   color: white;
   padding: 2.5rem 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform, opacity;
+  position: relative;
+  z-index: 45;
 }
 
 .desktop-tier-1-content {
@@ -532,7 +543,9 @@ onUnmounted(() => {
   position: sticky;
   top: 0;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: all 0.3s;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s, box-shadow 0.3s;
+  will-change: transform;
+  z-index: 40;
 }
 
 .nav-scrolled {
